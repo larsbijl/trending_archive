@@ -6,17 +6,21 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 LOC = os.path.dirname(__file__)
-print LOC
 
 
 def main():
     date = datetime.now().strftime("%Y-%m-%d")
     filename = os.path.join(LOC, date + ".md")
+
     with open(filename, "w") as e:
         e.write("###" + date + "\n")
+
     scrape("python", filename)
     scrape("go", filename)
+    scrape("cpp", filename)
     scrape("javascript", filename)
+    scrape("coffeescript", filename)
+
     cmd = "cd " + LOC + ";git add --all; git commit -m '" + date + "'; git push"
     os.system(cmd)
 
