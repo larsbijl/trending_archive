@@ -31,14 +31,14 @@ def scrape(language, filename):
 
     with open(filename, "a") as e:
         e.write("\n####" + language + "\n")
-        for item in soup.find_all("li", class_="leaderboard-list-item"):
+        for item in soup.find_all("li", class_="repo-list-item"):
 
-            title = item.h2.a.text
+            title = item.h3.a.get("href")[1:]
             try:
-                description = item.p.text
+                description = item.p.text.rstrip().lstrip()
             except:
                 description = ""
-            url = "https://github.com" + item.h2.a.get("href")
+            url = "https://github.com" + item.h3.a.get("href")
             line = "* [" + title + "](" + url + "): " + description + "\n"
             e.write(line.encode('ascii', 'ignore'))
 
