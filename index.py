@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 import os
+from os.path import join, dirname, exists
 
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-LOC = os.path.dirname(__file__)
+LOC = dirname(__file__)
 
 
 def main():
+    month = datetime.now().strftime("%Y-%m")
     date = datetime.now().strftime("%Y-%m-%d")
-    filename = os.path.join(LOC, date + ".md")
+    file_location = join(LOC, month)
+    filename = join(file_location, date + ".md")
+    if not exists(file_location):
+        os.makedirs(file_location)
 
     with open(filename, "w") as e:
         e.write("###" + date + "\n")
