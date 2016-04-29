@@ -22,7 +22,7 @@ def main():
     month = datetime.now().strftime("%Y-%m")
     date = datetime.now().strftime("%Y-%m-%d")
     file_location = join(LOC, month)
-    filename = join(file_location, date + "_test.md")
+    filename = join(file_location, date + ".md")
     if not exists(file_location):
         os.makedirs(file_location)
 
