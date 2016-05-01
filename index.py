@@ -23,43 +23,58 @@ def main():
     date = datetime.now().strftime("%Y-%m-%d")
     file_location = join(LOC, month)
     filename = join(file_location, date + ".md")
+    filename_short = join(file_location, date + "_short.md")
     if not exists(file_location):
         os.makedirs(file_location)
 
     with open(filename, "w") as e:
         e.write("###" + date + "\n")
+
+    with open(filename_short, "w") as e:
+        e.write("###" + date + "\n")
         e.write("diff between today and yesterday\n")
 
-    scrape("python", filename, yfilecontents)
-    scrape("go", filename, yfilecontents)
-    scrape("cpp", filename, yfilecontents)
-    scrape("javascript", filename, yfilecontents)
-    scrape("coffeescript", filename, yfilecontents)
+    scrape("python", filename, filename_short, yfilecontents)
+    scrape("go", filename, filename_short, yfilecontents)
+    scrape("cpp", filename, filename_short, yfilecontents)
+    scrape("javascript", filename, filename_short, yfilecontents)
+    scrape("coffeescript", filename, filename_short, yfilecontents)
 
     cmd = "cd " + LOC + ";git add --all; git commit -m '" + date + "'; git push"
     os.system(cmd)
 
 
-def scrape(language, filename, yfilecontents):
+def scrape(language, filename, filename_short, yfilecontents):
     req = requests.get("https://github.com/trending?l=" + language)
     soup = BeautifulSoup(req.content)
 
-    with open(filename, "a") as e:
-        e.write("\n####" + language + "\n")
-        for item in soup.find_all("li", class_="repo-list-item"):
+    e = open(filename, "a")
+    d = open(filename_short, "a")
 
-            url = "https://github.com" + item.h3.a.get("href")
-            if url in yfilecontents:
-                continue
+    e.write("\n####" + language + "\n")
+    d.write("\n####" + language + "\n")
 
-            title = item.h3.a.get("href")[1:]
-            try:
-                description = item.p.text.rstrip().lstrip().split("\n")[0]
-            except:
-                description = ""
+    for item in soup.find_all("li", class_="repo-list-item"):
 
-            line = "* [" + title + "](" + url + "): " + description + "\n"
-            e.write(line.encode('ascii', 'ignore'))
+        url = "https://github.com" + item.h3.a.get("href")
+
+        title = item.h3.a.get("href")[1:]
+        try:
+            description = item.p.text.rstrip().lstrip().split("\n")[0]
+        except:
+            description = ""
+
+        line = "* [" + title + "](" + url + "): " + description + "\n"
+        e.write(line.encode('ascii', 'ignore'))
+
+        if url in yfilecontents:
+            continue
+
+        d.write(line.encode('ascii', 'ignore'))
+
+    e.close()
+    d.close()
+
 
 if __name__ == '__main__':
     main()
