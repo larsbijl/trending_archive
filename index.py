@@ -16,8 +16,11 @@ def main():
     ymonth = yesterday.strftime("%Y-%m")
     ydate = yesterday.strftime("%Y-%m-%d")
     yfilename = join(LOC, ymonth, ydate + ".md")
-    with open(yfilename) as e:
-        yfilecontents = e.read()
+    if os.path.exists(yfilename):
+        with open(yfilename) as e:
+            yfilecontents = e.read()
+    else:
+        yfilecontents = ""
 
     month = datetime.now().strftime("%Y-%m")
     date = datetime.now().strftime("%Y-%m-%d")
