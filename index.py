@@ -57,7 +57,7 @@ def scrape(language, filename, filename_short, yfilecontents):
     e.write("\n####" + language + "\n")
     d.write("\n####" + language + "\n")
 
-    for item in soup.find_all("li", class_="repo-list-item"):
+    for item in soup.find_all("li", class_="d-block"):
 
         url = "https://github.com" + item.h3.a.get("href")
 
