@@ -31,10 +31,10 @@ def main():
         os.makedirs(file_location)
 
     with open(filename, "w") as e:
-        e.write("###" + date + "\n")
+        e.write("### " + date + "\n")
 
     with open(filename_short, "w") as e:
-        e.write("###" + date + "\n")
+        e.write("### " + date + "\n")
         e.write("diff between today and yesterday\n")
 
     scrape("python", filename, filename_short, yfilecontents)
@@ -54,8 +54,8 @@ def scrape(language, filename, filename_short, yfilecontents):
     e = open(filename, "a")
     d = open(filename_short, "a")
 
-    e.write("\n####" + language + "\n")
-    d.write("\n####" + language + "\n")
+    e.write("\n#### " + language + "\n")
+    d.write("\n#### " + language + "\n")
 
     for item in soup.find_all("li", class_="d-block"):
 
