@@ -49,7 +49,8 @@ def main():
 
 def scrape(language, filename, filename_short, yfilecontents):
     req = requests.get("https://github.com/trending?l=" + language)
-    soup = BeautifulSoup(req.content)
+    soup = BeautifulSoup(req.content, "html.parser")
+
 
     e = open(filename, "a")
     d = open(filename_short, "a")
