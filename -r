@@ -1,0 +1,25 @@
+Collecting requirements.txt
+  1 location(s) to search for versions of requirements.txt:
+  * https://pypi.python.org/simple/requirements-txt/
+  Getting page https://pypi.python.org/simple/requirements-txt/
+  Could not fetch URL https://pypi.python.org/simple/requirements-txt/: 404 Client Error: Not Found (requirements-txt does not exist) for url: https://pypi.python.org/simple/requirements-txt/ - skipping
+  Could not find a version that satisfies the requirement requirements.txt (from versions: )
+Cleaning up...
+No matching distribution found for requirements.txt
+Exception information:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/site-packages/pip/commands/install.py", line 335, in run
+    wb.build(autobuilding=True)
+  File "/usr/lib/python2.7/site-packages/pip/wheel.py", line 749, in build
+    self.requirement_set.prepare_files(self.finder)
+  File "/usr/lib/python2.7/site-packages/pip/req/req_set.py", line 380, in prepare_files
+    ignore_dependencies=self.ignore_dependencies))
+  File "/usr/lib/python2.7/site-packages/pip/req/req_set.py", line 554, in _prepare_file
+    require_hashes
+  File "/usr/lib/python2.7/site-packages/pip/req/req_install.py", line 278, in populate_link
+    self.link = finder.find_requirement(self, upgrade)
+  File "/usr/lib/python2.7/site-packages/pip/index.py", line 514, in find_requirement
+    'No matching distribution found for %s' % req
+DistributionNotFound: No matching distribution found for requirements.txt

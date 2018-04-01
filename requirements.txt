@@ -1,2 +1,2 @@
-BeautifulSoup==3
+BeautifulSoup4
 requests==2
