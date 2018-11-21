@@ -44,6 +44,7 @@ def main():
     scrape("coffeescript", filename, filename_short, yfilecontents)
 
     cmd = "cd " + LOC + ";git add --all; git commit -m '" + date + "'; git push"
+    print(cmd)
     os.system(cmd)
 
 
@@ -58,8 +59,7 @@ def scrape(language, filename, filename_short, yfilecontents):
     e.write("\n#### " + language + "\n")
     d.write("\n#### " + language + "\n")
 
-    for item in soup.find_all("li", class_="d-block"):
-
+    for item in soup.find_all("li", class_="col-12"):
         url = "https://github.com" + item.h3.a.get("href")
 
         title = item.h3.a.get("href")[1:]
