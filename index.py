@@ -41,7 +41,7 @@ def main():
     scrape("go", filename, filename_short, yfilecontents)
     scrape("cpp", filename, filename_short, yfilecontents)
     scrape("javascript", filename, filename_short, yfilecontents)
-    scrape("coffeescript", filename, filename_short, yfilecontents)
+    scrape("typescript", filename, filename_short, yfilecontents)
 
     cmd = "cd " + LOC + ";git add --all; git commit -m '" + date + "'; git push"
     print(cmd)
