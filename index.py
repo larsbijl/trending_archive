@@ -39,6 +39,7 @@ def main():
 
     scrape("python", filename, filename_short, yfilecontents)
     scrape("go", filename, filename_short, yfilecontents)
+    scrape("rust", filename, filename_short, yfilecontents)
     scrape("cpp", filename, filename_short, yfilecontents)
     scrape("javascript", filename, filename_short, yfilecontents)
     scrape("typescript", filename, filename_short, yfilecontents)
