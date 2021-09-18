@@ -70,12 +70,12 @@ def scrape(language, filename, filename_short, yfilecontents):
             description = ""
 
         line = "* [" + title + "](" + url + "): " + description + "\n"
-        e.write(line.encode('ascii', 'ignore'))
+        e.write(line)
 
         if url in yfilecontents:
             continue
 
-        d.write(line.encode('ascii', 'ignore'))
+        d.write(line)
 
     e.close()
     d.close()
