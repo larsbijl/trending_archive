@@ -61,9 +61,9 @@ def scrape(language, filename, filename_short, yfilecontents):
     d.write("\n#### " + language + "\n")
 
     for item in soup.find_all("article", class_="Box-row"):
-        url = "https://github.com" + item.h1.a.get("href")
+        url = "https://github.com" + item.h2.a.get("href")
 
-        title = item.h1.a.get("href")[1:]
+        title = item.h2.a.get("href")[1:]
         try:
             description = item.p.text.rstrip().lstrip().split("\n")[0]
         except:
